@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://6lp5hq1t3udw"]
+
+[ext_resource type="Script" path="res://selection test/selectable_unit.gd" id="1_l56nv"]
+[ext_resource type="Texture2D" uid="uid://cfiabcomvcic7" path="res://selection test/selection circle.png" id="2_onw3w"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_u4uj6"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xcr3v"]
+width = 16
+height = 16
+noise = SubResource("FastNoiseLite_u4uj6")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pul4o"]
+
+[node name="unit" type="CharacterBody2D"]
+script = ExtResource("1_l56nv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.477833, 0.276712, 0.422079, 1)
+z_index = 999
+texture = SubResource("NoiseTexture2D_xcr3v")
+
+[node name="SelectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SelectionArea"]
+shape = SubResource("CircleShape2D_pul4o")
+
+[node name="SelectionCircle" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_onw3w")
